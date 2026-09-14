@@ -8,7 +8,7 @@ DigitalBank provides a secure web-based platform where customers can register, l
 
 ## 📌 Project Overview
 
-DigitalBank is a Spring Boot based banking application developed to demonstrate real-world backend and frontend development concepts.
+DigitalBank is a Spring Boot-based banking application developed to demonstrate real-world backend and frontend development concepts.
 
 The application follows a layered architecture:
 
@@ -30,35 +30,35 @@ The application uses **Spring Data JPA and Hibernate** for database interaction 
 
 ## 🚀 Features
 
-### Authentication
+### 🔐 Authentication
 
 * User registration
 * User login
 * JWT-based authentication
 * Protected REST APIs
-* Token validation
+* JWT token validation
 * Role information in JWT
 * Secure authentication flow
 
-### Customer Management
+### 👤 Customer Management
 
 * Create customer
 * View customer information
-* Update customer information
+* Update customer status
 * Delete customer
 * Customer status management
 * Input validation
 
-### Bank Account Management
+### 🏦 Bank Account Management
 
 * Create bank account
 * View account information
-* Update account information
+* Update account status
 * Account status management
 * Customer-account ownership validation
 * Balance management
 
-### Banking Transactions
+### 💰 Banking Transactions
 
 * Deposit money
 * Withdraw money
@@ -69,8 +69,9 @@ The application uses **Spring Data JPA and Hibernate** for database interaction 
 * Filter transactions by type
 * Filter transactions by date range
 * Pagination for transaction records
+* Transaction summaries
 
-### Frontend
+### 🌐 Frontend
 
 * Login page
 * Registration functionality
@@ -89,16 +90,16 @@ The application uses **Spring Data JPA and Hibernate** for database interaction 
 
 ## Backend
 
-| Technology      | Purpose                         |
-| --------------- | ------------------------------- |
-| Java 21         | Programming language            |
-| Spring Boot     | Backend framework               |
-| Spring Web      | REST API development            |
-| Spring Data JPA | Database access                 |
-| Hibernate       | ORM framework                   |
-| Spring Security | Application security            |
-| JWT             | Authentication                  |
-| Maven           | Build and dependency management |
+| Technology      | Purpose                          |
+| --------------- | -------------------------------- |
+| Java 21         | Programming language             |
+| Spring Boot     | Backend framework                |
+| Spring Web      | REST API development             |
+| Spring Data JPA | Database access                  |
+| Hibernate       | ORM framework                    |
+| Spring Security | Application security             |
+| JWT             | Authentication and authorization |
+| Maven           | Build and dependency management  |
 
 ## Database
 
@@ -130,9 +131,9 @@ The application uses **Spring Data JPA and Hibernate** for database interaction 
 
 ```text
                      ┌──────────────────────┐
-                     │      Web Browser     │
+                     │     Web Browser      │
                      │                      │
-                     │ HTML / CSS / JS      │
+                     │    HTML / CSS / JS   │
                      └──────────┬───────────┘
                                 │
                                 │ HTTP / REST
@@ -147,20 +148,20 @@ The application uses **Spring Data JPA and Hibernate** for database interaction 
                      ┌──────────────────────┐
                      │    Service Layer     │
                      │                      │
-                     │ Business Logic       │
+                     │    Business Logic    │
                      └──────────┬───────────┘
                                 │
                                 ▼
                      ┌──────────────────────┐
-                     │  Repository Layer    │
+                     │   Repository Layer   │
                      │                      │
-                     │ Spring Data JPA      │
+                     │   Spring Data JPA    │
                      └──────────┬───────────┘
                                 │
                                 │ Hibernate / JPA
                                 ▼
                      ┌──────────────────────┐
-                     │       MySQL          │
+                     │        MySQL         │
                      │      digitalbank     │
                      └──────────────────────┘
 ```
@@ -308,34 +309,60 @@ POST /api/auth/login
 
 ## Customer APIs
 
+Base path:
+
 ```text
 /api/customers
 ```
 
+Available operations include:
+
+* Create customer
+* Get all customers
+* Get customer by ID
+* Update customer status
+* Delete customer
+
 ## Bank Account APIs
+
+Base path:
 
 ```text
 /api/accounts
 ```
 
+Available operations include:
+
+* Create account
+* Get all accounts
+* Get account by ID
+* Get account by account number
+* Get accounts by customer
+* Update account status
+* Delete account
+
 ## Transaction APIs
+
+Base path:
 
 ```text
 /api/transactions
 ```
 
-Transaction APIs provide functionality for:
+Available operations include:
 
 * Deposit
 * Withdrawal
 * Transfer
 * Transaction history
 * Balance checking
-* Filtering
+* Transaction filtering
 * Date-range queries
 * Pagination
+* Transaction summaries
+* Balance verification
 
-> API paths may contain additional path variables and query parameters depending on the operation.
+API paths may contain additional path variables and query parameters depending on the operation.
 
 ---
 
@@ -348,29 +375,19 @@ digitalbank/
 │   └── wrapper/
 │
 ├── src/
-│   │
 │   ├── main/
-│   │   │
 │   │   ├── java/
 │   │   │   └── com/
 │   │   │       └── digitalbank/
-│   │   │           │
 │   │   │           ├── controller/
-│   │   │           │
 │   │   │           ├── service/
-│   │   │           │
 │   │   │           ├── repository/
-│   │   │           │
 │   │   │           ├── entity/
-│   │   │           │
 │   │   │           ├── security/
-│   │   │           │
 │   │   │           └── DigitalbankApplication.java
 │   │   │
 │   │   └── resources/
-│   │       │
 │   │       ├── application.properties
-│   │       │
 │   │       └── static/
 │   │           ├── index.html
 │   │           ├── style.css
@@ -429,13 +446,15 @@ The actual values should **never be committed to GitHub**.
 
 The application reads these values from environment variables.
 
-Example:
+Example `application.properties` configuration:
 
 ```properties
 spring.datasource.password=${DB_PASSWORD}
 
 jwt.secret=${JWT_SECRET}
 ```
+
+> Replace the example values with your own local credentials. Never commit real passwords or secrets to the repository.
 
 ---
 
@@ -498,7 +517,7 @@ Configure the required MySQL user and permissions.
 
 ## 3. Configure Environment Variables
 
-Linux / WSL:
+For Linux / WSL:
 
 ```bash
 export DB_PASSWORD='your_database_password'
@@ -588,7 +607,7 @@ The project implements several security practices:
 * Environment-based secret configuration
 * Account ownership validation
 * Input validation
-* Authentication filters
+* JWT authentication filter
 * Password authentication
 * `.gitignore` protection for environment files
 * No database password stored directly in source code
@@ -631,7 +650,7 @@ Recommended screenshots:
 
 1. Login page
 2. Registration page
-3. Dashboard
+3. Banking dashboard
 4. Deposit operation
 5. Withdrawal operation
 6. Transfer operation
@@ -703,4 +722,3 @@ https://github.com/RAVITEJA0044
 # 📄 License
 
 This project is created for learning, development, and portfolio purposes.
-
