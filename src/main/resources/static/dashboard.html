@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:,">
+    <title>DigitalBank - Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            DigitalBank
+        </div>
+
+        <div class="nav-right">
+
+            <span id="usernameDisplay">
+                Welcome
+            </span>
+
+            <button id="logoutButton">
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main Dashboard -->
+
+    <main class="dashboard">
+
+        <h1>Dashboard</h1>
+
+        <p class="dashboard-subtitle">
+            Manage your digital banking account
+        </p>
+
+
+        <!-- Account Summary -->
+
+        <section class="summary-grid">
+
+            <div class="summary-card">
+
+                <h3>Account Number</h3>
+
+                <p id="accountNumber">
+                    Loading...
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>Account Type</h3>
+
+                <p id="accountType">
+                    Loading...
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>Current Balance</h3>
+
+                <p id="balance">
+                    Loading...
+                </p>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <h3>Account Status</h3>
+
+                <p id="accountStatus">
+                    Loading...
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Banking Operations -->
+
+        <section class="operations">
+
+            <h2>Banking Operations</h2>
+
+            <div class="operation-grid">
+
+                <button onclick="showDeposit()">
+                    Deposit
+                </button>
+
+                <button onclick="showWithdraw()">
+                    Withdraw
+                </button>
+
+                <button onclick="showTransfer()">
+                    Transfer
+                </button>
+
+                <button onclick="loadTransactions()">
+                    Transaction History
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Transaction Form -->
+
+        <section id="transactionSection"
+                 class="transaction-section">
+
+            <h2 id="transactionTitle">
+                Banking Operation
+            </h2>
+
+            <div class="transaction-form">
+
+                <input
+                    type="number"
+                    id="transactionAmount"
+                    placeholder="Enter amount"
+                    min="1"
+                    step="0.01">
+
+               <input
+    type="text"
+    id="transferAccount"
+    placeholder="Destination account number"
+    style="display: none;">
+
+                <input
+                    type="text"
+                    id="description"
+                    placeholder="Description">
+
+                <button onclick="executeTransaction()">
+                    Submit
+                </button>
+
+            </div>
+
+            <p id="transactionMessage"></p>
+
+        </section>
+
+
+        <!-- Transaction History -->
+
+        <section class="history">
+
+            <h2>Transaction History</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Balance After</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="transactionTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+
+   <script src="dashboard.js?v=2"></script>
+
+</body>
+
+</html>
